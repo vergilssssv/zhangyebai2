@@ -11,20 +11,44 @@
     <link rel="stylesheet" href="./weui.min.css">
     <script type="text/javascript" src="./weui.min.js?v=20211111101214" charset="UTF-8"></script>
 	<script type="text/javascript" src="./Untitled-1.js"></script>
+	<script language="JavaScript">
+        function startTime()   
+        {   
+            var today=new Date();//定义日期对象   
+            var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年    
+            var MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回年    
+            var dd = today.getDate();//通过日期对象的getDate()方法返回年     
+            var hh=today.getHours();//通过日期对象的getHours方法返回小时   
+            var mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟   
+            var ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒   
+            // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09   
+            MM=checkTime(MM);
+            dd=checkTime(dd);
+            mm=checkTime(mm);   
+            ss=checkTime(ss);    
+            
+            document.getElementById('nowDateTimeSpan').innerHTML=hh+":"+mm+":"+ss;   
+            setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法 
+        }   
+         
+        function checkTime(i)   
+        {   
+            if (i<10){
+                i="0" + i;
+            }   
+              return i;
+        }  
+    </script>
 </head>
 <body ontouchstart>
 
 <div id="bodyDiv">
 	
 	<p style="text-align:center;" id="imgBg"><br><img src="./pass.png" width="330px" height="225px" alt=""><br><font style="font-size:100px">
-	<script type="text/javascript">var t = new Date();
-	
-		var hour = t.getHours();
-		var minute = t.getMinutes();
-		var second = t.getSeconds();
-		var nowTime =hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second;
-		document.write(nowTime);
-	</script></font></p>
+		<body onload="startTime()">
+			<span id="nowDateTimeSpan"></span>
+		</body>
+	</font></p>
 	<div class="weui-cells__title">学生返校通行证</div>
 	<div class="weui-cells">
 		<div class="weui-cell  weui-cell_example">
@@ -42,7 +66,7 @@
 		<div class="weui-cell  weui-cell_example">
 			<div class="weui-cell__hd"><img src="./person.png" alt="" style="width: 20px; margin-right: 16px; display: block;"></div>
 			<div class="weui-cell__bd">
-				<p>学院：轻型产业学院</p>
+				<p onclick="seti()">学院：轻型产业学院</p>
 			</div>
 		</div>
 		<div class="weui-cell  weui-cell_example">
@@ -57,12 +81,11 @@
 				</script></p>
 			</div>
 		</div>
-		
 	</div>
 	<br/>
 	<br/>
 	<div class="weui-footer">
-	<p>版权所有 &copy; 辽宁大学</p>
+	<p onclick="setBGC()">版权所有 &copy; 辽宁大学 </p>
 	</div>
 </div>
 <script type="text/javascript" src="./getpass.js?v=20211111101214"></script>
